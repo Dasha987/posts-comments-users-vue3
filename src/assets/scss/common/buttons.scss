@@ -1,0 +1,17 @@
+.btn {
+  display: inline-block;
+  padding: 7px 10px;
+  max-height: 35px;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 12px;
+
+  // default btn
+  &.btnDefault {
+    color: $g-0;
+    border: 1px solid $default-color;
+    background-color: $default-color;
+  }
+}

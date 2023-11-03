@@ -1,0 +1,32 @@
+// Default
+html,
+body,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+// Links
+a {
+  text-decoration: none;
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+}
+
+// List
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Default
+html {
+  box-sizing: border-box;
+}

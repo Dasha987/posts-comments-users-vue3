@@ -1,0 +1,35 @@
+.element {
+  font-size: 12px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  margin: auto;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: -1px 15px 30px -12px rgba(50, 50, 50, 0.2);
+  &.user {
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+  }
+}
+
+.element-content {
+  width: 100%;
+}
+
+.element-name {
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  &.user {
+    margin-top: 5px;
+  }
+}
+
+.element-body {
+  font-size: 14px;
+}
