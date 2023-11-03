@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import { POSTS_URL, USERS_URL, COMMENTS_URL, USER_POSTS_URL } from '@/api'
 export const store = createStore({
     state: {
         users: [],
@@ -12,11 +13,6 @@ export const store = createStore({
         totalPage: 0, //количество страниц
         limitPost: 20, //количество постов на странице
         nameUser: ''
-    },
-    getters: {
-        getComments(state) {
-            return state.comments
-        }
     },
 
     mutations: {
@@ -62,7 +58,7 @@ export const store = createStore({
             commit('setPage', 0)
             commit('setIsLoading', false);
             axios
-                .get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
+                .get(`${USER_POSTS_URL}${id}`)
                 .then(response => {
                     const nameUser = state.users.find(user => {
                         return user.id === id
@@ -83,7 +79,7 @@ export const store = createStore({
             commit('setIsLoading', false);
             if (state.users.length == 0) {
                 await axios
-                    .get('https://jsonplaceholder.typicode.com/users')
+                    .get(USERS_URL)
                     .then(response => {
                         commit("setUsers", response.data)
                     })
@@ -91,7 +87,7 @@ export const store = createStore({
             }
             if (state.comments.length == 0) {
                 await axios
-                    .get('https://jsonplaceholder.typicode.com/comments')
+                    .get(COMMENTS_URL)
                     .then(response => {
                         commit("setComments", response.data)
                         commit("setLengthComment", response.data.length + 1)
@@ -100,7 +96,7 @@ export const store = createStore({
             }
 
             await axios
-                .get(`https://jsonplaceholder.typicode.com/posts?_page=${state.page}&_limit=${state.limitPost}`)
+                .get(`${POSTS_URL}?_page=${state.page}&_limit=${state.limitPost}`)
                 .then(response => {
                     const data = response.data.map(post => ({
                         ...post,
@@ -119,7 +115,7 @@ export const store = createStore({
         async loadMoreData({ state, commit }) {
             commit('setPage', state.page + 1)
             axios
-                .get(`https://jsonplaceholder.typicode.com/posts?_page=${state.page}&_limit=${state.limitPost}`)
+                .get(`${POSTS_URL}?_page=${state.page}&_limit=${state.limitPost}`)
                 .then(response => {
                     const data = response.data.map(post => ({
                         ...post,
