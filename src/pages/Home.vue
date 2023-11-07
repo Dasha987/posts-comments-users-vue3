@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import postsList from '@/components/postsList.vue'
 import spinner from '@/components/UI/spinner.vue'
 import { useStore } from 'vuex'
@@ -22,15 +22,21 @@ export default {
   },
   setup() {
     const store = useStore()
+    const nameUser = ref(
+      computed(() => {
+        return store.state.nameUser
+      })
+    )
+    const loadMorePosts = () => {
+      if (!nameUser.value) store.dispatch('loadMoreData')
+    }
     return {
       isLoading: computed(() => {
         return store.state.isLoading
       }),
-      nameUser: computed(() => {
-        return store.state.nameUser
-      }),
       resetSortUser: () => store.dispatch('setData'),
-      loadMorePosts: () => store.dispatch('loadMoreData')
+      nameUser,
+      loadMorePosts
     }
   }
 }
