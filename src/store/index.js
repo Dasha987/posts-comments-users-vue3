@@ -63,14 +63,15 @@ export const store = createStore({
                     const nameUser = state.users.find(user => {
                         return user.id === id
                     }).name
+                    commit("setNameUser", nameUser)
                     const data = response.data.map(post => ({
                         ...post,
                         name: nameUser,
                         comments: [...state.comments].filter(comment => post.id == comment.postId)
                     }))
-                    commit("setNameUser", nameUser)
                     commit("setData", data)
                     commit('setIsLoading', true);
+                    commit('setActiveBlock', 1)
                 })
                 .catch(error => console.log(error))
         },

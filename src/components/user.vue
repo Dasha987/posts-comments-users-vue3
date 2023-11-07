@@ -23,7 +23,6 @@ export default {
     return {
       viewUserPosts: id => {
         store.dispatch('setUserPosts', id)
-        store.commit('setActiveBlock', 1)
       }
     }
   }

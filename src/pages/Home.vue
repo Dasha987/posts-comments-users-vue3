@@ -28,7 +28,7 @@ export default {
       })
     )
     const loadMorePosts = () => {
-      if (!nameUser.value) store.dispatch('loadMoreData')
+      store.dispatch('loadMoreData')
     }
     return {
       isLoading: computed(() => {
